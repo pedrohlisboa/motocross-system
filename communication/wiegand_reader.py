@@ -38,9 +38,8 @@ class WiegandDecoder(RFIDReaderBase):
         self._last_bit_time = 0
         self._last_read_tags = {}
         
-        # GPIO would be initialized here (e.g., using RPi.GPIO or gpiod)
-        # For cross-platform compatibility, this is left as a placeholder
-        self._gpio_available = False
+        # Note: GPIO library integration required for hardware implementation
+        # For cross-platform compatibility, GPIO initialization is left as a placeholder
 
     async def connect(self):
         """Initialize GPIO pins for Wiegand reading"""

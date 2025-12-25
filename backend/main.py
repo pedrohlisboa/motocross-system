@@ -240,7 +240,7 @@ async def start_rfid_reader(config: ReaderConfig, db: Session = Depends(get_db))
         # Set callback for tag readings
         async def tag_callback(tag: RFIDTag):
             # Find active event
-            active_event = db.query(Event).filter(Event.is_active == True).first()
+            active_event = db.query(Event).filter(Event.is_active.is_(True)).first()
             if active_event:
                 race_manager = RaceManager(db)
                 await race_manager.process_rfid_tag(tag, active_event.id)

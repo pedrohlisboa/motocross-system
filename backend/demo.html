@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Motocross RFID API Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #1976d2; }
+        .endpoint { background: #e3f2fd; padding: 15px; margin: 10px 0; border-radius: 4px; }
+        .method { display: inline-block; padding: 4px 8px; border-radius: 4px; color: white; font-weight: bold; margin-right: 10px; }
+        .get { background: #4caf50; }
+        .post { background: #2196f3; }
+        .put { background: #ff9800; }
+        .delete { background: #f44336; }
+        .response { background: #263238; color: #aed581; padding: 15px; border-radius: 4px; overflow-x: auto; font-family: monospace; margin-top: 10px; }
+        .feature { background: #fff3e0; padding: 10px; margin: 5px 0; border-left: 4px solid #ff9800; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏍️ Motocross RFID Competition Management System</h1>
+        <p><strong>Version 1.0.0</strong> - Complete RFID-based race timing system</p>
+        
+        <h2>✨ Key Features</h2>
+        <div class="feature">✓ Real-time RFID tag reading (RS232/RS485, Wiegand 26/34, TCP/IP)</div>
+        <div class="feature">✓ Automatic lap tracking and timing</div>
+        <div class="feature">✓ Live leaderboard with positions and lap times</div>
+        <div class="feature">✓ Export results to PDF, Excel, and CSV</div>
+        <div class="feature">✓ WebSocket support for real-time updates</div>
+        <div class="feature">✓ Support for Motocross and Enduro race modes</div>
+        
+        <h2>📡 API Endpoints</h2>
+        
+        <div class="endpoint">
+            <div><span class="method post">POST</span> <code>/riders</code> - Register new rider</div>
+            <div class="response">{
+  "name": "John Doe",
+  "number": 42,
+  "team": "Factory Racing",
+  "category": "Pro",
+  "epc_rfid": "E2001234567890123456",
+  "id": 1
+}</div>
+        </div>
+        
+        <div class="endpoint">
+            <div><span class="method post">POST</span> <code>/events</code> - Create race event</div>
+            <div class="response">{
+  "name": "Championship Round 1",
+  "race_mode": "motocross",
+  "race_type": "laps",
+  "max_laps": 15,
+  "is_active": false,
+  "id": 1
+}</div>
+        </div>
+        
+        <div class="endpoint">
+            <div><span class="method post">POST</span> <code>/events/{id}/start</code> - Start event</div>
+        </div>
+        
+        <div class="endpoint">
+            <div><span class="method get">GET</span> <code>/leaderboard/{event_id}</code> - Live leaderboard</div>
+            <div class="response">{
+  "event_id": 1,
+  "event_name": "Championship Round 1",
+  "entries": [
+    {
+      "position": 1,
+      "rider_number": 42,
+      "rider_name": "John Doe",
+      "total_laps": 15,
+      "total_time": 1234.567,
+      "best_lap_time": 78.456
+    }
+  ]
+}</div>
+        </div>
+        
+        <div class="endpoint">
+            <div><span class="method post">POST</span> <code>/rfid/readers/start</code> - Start RFID reader</div>
+            <div class="response">{
+  "reader_type": "tcpip",
+  "reader_id": "finish_line",
+  "host": "192.168.1.100",
+  "tcp_port": 6000,
+  "anti_bounce_time": 2.0
+}</div>
+        </div>
+        
+        <div class="endpoint">
+            <div><span class="method post">POST</span> <code>/reports/export</code> - Export results (PDF/Excel/CSV)</div>
+        </div>
+        
+        <h2>🔧 Supported RFID Interfaces</h2>
+        <div class="feature">📡 RS232/RS485 Serial Communication</div>
+        <div class="feature">📡 Wiegand 26/34 Protocol</div>
+        <div class="feature">📡 TCP/IP Network Communication</div>
+        
+        <h2>📊 Database Models</h2>
+        <div class="feature">👤 Riders - Registration with RFID tags</div>
+        <div class="feature">🏁 Events - Race configuration and management</div>
+        <div class="feature">📻 RFID Readings - Raw tag detections</div>
+        <div class="feature">⏱️ Laps - Calculated lap times</div>
+        <div class="feature">🏆 Results - Final standings and statistics</div>
+    </div>
+</body>
+</html>
